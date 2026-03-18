@@ -17,3 +17,4 @@ class ListaSimple:
     def tamanio(self):
         return self._tamanio
 
+    # Metodos
