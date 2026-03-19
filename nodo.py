@@ -26,6 +26,3 @@ class Nodo:
     @siguiente.setter
     def siguiente(self, siguiente):
         self._siguiente = siguiente
-
-    def __str__(self):
-        return f"{self.nombre}({self.edad})"

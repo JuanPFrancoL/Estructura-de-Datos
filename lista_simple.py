@@ -53,7 +53,7 @@ class ListaSimple:
         puntero = self._cabeza
 
         while puntero is not None:
-            print(puntero)
+            print(puntero.nombre, puntero.edad)
             puntero = puntero.siguiente
 
 
