@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     # Contruir lista
     circulo = ListaSimple()
-    for nombre, edad in prisioneros_data:
+    for nombre, edad in prisioneros_data.items():
         circulo.agregar_prisionero(Prisionero(nombre, edad))
 
     # Primer dec
