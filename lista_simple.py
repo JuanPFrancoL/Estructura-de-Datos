@@ -38,3 +38,22 @@ class ListaSimple:
 
         nodo.siguiente = None
         self._tamanio -= 1
+
+    def is_empty(self):
+        return self._cabeza is None
+
+    # Primer detreto
+    def ordenar(self):
+        if self.is_empty():
+            return
+        intercambiado = True
+        while intercambiado:
+            intercambiado = False
+            puntero = self._cabeza
+
+            while puntero.siguiente is not None:
+                if puntero.edad > puntero.siguiente.edad:
+                    puntero.prisionero, puntero.siguiente.prisionero = (puntero.siguiente.prisionero, puntero.prisionero)
+                    intercambiado = True
+
+                puntero = puntero.siguiente
