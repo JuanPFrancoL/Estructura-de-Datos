@@ -61,11 +61,11 @@ class ListaSimple:
     def ordenar(self):
         if self.is_empty():
             return
+
         intercambiado = True
         while intercambiado:
             intercambiado = False
             puntero = self._cabeza
-
             while puntero.siguiente is not None:
                 if puntero.edad > puntero.siguiente.edad:
                     aux = puntero.prisionero
@@ -84,7 +84,6 @@ class ListaSimple:
         while inicio <= fin:
             medio = (inicio + fin) // 2
 
-            # recorrido incrustado — antes era _nodo_en_indice(medio)
             nodo_medio = self.cabeza
             for _ in range(medio):
                 nodo_medio = nodo_medio.siguiente
@@ -97,3 +96,12 @@ class ListaSimple:
                 fin = medio - 1
 
         return None
+
+    def clemencia(self, edad_gracia):
+        nodo = self.busqueda_binaria(edad_gracia)
+        if nodo is None:
+            return None
+        self.eliminar(nodo)
+        return nodo
+
+    # Tercer / Cuarto decreto - Juego circulo
