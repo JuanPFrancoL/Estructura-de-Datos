@@ -108,55 +108,41 @@ class ListaSimple:
     def juego_circulo(self, k1, k2, ejecutados):
         total_inicial = self.tamanio
         mitad = total_inicial // 2
-
         eliminados_f1 = 0 # fase 1
-
-        anterior = None
         actual = self._cabeza
 
         # Fase 1: k1
         while eliminados_f1 < mitad:
-
             for _ in range(k1 - 1):
-                anterior = actual
                 actual = actual.siguiente
-
                 if actual is None:
                     actual = self._cabeza
-                    anterior = None
 
             ejecutados.agregar_prisionero(actual.prisionero)
             siguiente_vivo = actual.siguiente
             if siguiente_vivo is None:
                 siguiente_vivo = self._cabeza
-            self.eliminar(anterior, actual)
+            self.eliminar(actual)
             eliminados_f1 += 1
-
             actual = siguiente_vivo
             if actual is None:
                 actual = self._cabeza
-                anterior = None
 
         # Fase 2: k2
         while self._tamanio > 1:
             for _ in range(k2 - 1):
-                anterior = actual
                 actual = actual.siguiente
                 if actual is None:
                     actual = self._cabeza
-                    anterior = None
 
             ejecutados.agregar_prisionero(actual.prisionero)
             siguiente_vivo = actual.siguiente
 
             if siguiente_vivo is None:
                 siguiente_vivo = self._cabeza
-
-            self.eliminar(anterior, actual)
+            self.eliminar(actual)
             actual = siguiente_vivo
             if actual is None:
                 actual = self._cabeza
-                anterior = None
 
         return self._cabeza
-
