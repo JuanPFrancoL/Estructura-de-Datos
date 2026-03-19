@@ -30,34 +30,24 @@ class ListaSimple:
             puntero.siguiente = nuevo_nodo
         self._tamanio += 1
 
-    def eliminar(self, nodo_anterior, nodo):
-        if nodo_anterior is None:
+    def eliminar(self, nodo):
+        if self._cabeza is nodo:
             self._cabeza = nodo.siguiente
-        else:
-            nodo_anterior.siguiente = nodo.siguiente
+            nodo.siguiente = None
+            self._tamanio -= 1
+            return
 
-        nodo.siguiente = None
-        self._tamanio -= 1
+        puntero = self._cabeza
+        while puntero is not None:
+            if puntero.siguiente is nodo:
+                puntero.siguiente = nodo.siguiente
+                nodo.siguiente = None
+                self._tamanio -= 1
+                return
+            puntero = puntero.siguiente
 
     def is_empty(self):
         return self._cabeza is None
-
-    def insertar(self, indice, prisionero):
-        nuevo_nodo = Nodo(prisionero)
-        if indice == 0:
-            nuevo_nodo.siguiente = self._cabeza
-            self._cabeza = nuevo_nodo
-            self._tamanio += 1
-            return
-        contador = 0
-        puntero = self._cabeza
-        while contador < (indice - 1) and puntero is not None:
-            puntero = puntero.siguiente
-            contador += 1
-        aux = puntero.siguiente
-        puntero.siguiente = nuevo_nodo
-        nuevo_nodo.siguiente = aux
-        self._tamanio += 1
 
     def imprimir(self):
         puntero = self._cabeza
@@ -86,13 +76,24 @@ class ListaSimple:
                 puntero = puntero.siguiente
 
 
-    # Acceder x indice
-    def _nodo_en_indice(self, indice):
-        anterior = None
-        actual = self._cabeza
-        for _ in range(indice):
-            anterior = actual
-            actual = actual.siguiente
-        return anterior, actual
-
     # Segundo decreto - busq binaria y clemencia
+    def busqueda_binaria(self, edad_objetivo):
+        inicio = 0
+        fin = self.tamanio - 1
+
+        while inicio <= fin:
+            medio = (inicio + fin) // 2
+
+            # recorrido incrustado — antes era _nodo_en_indice(medio)
+            nodo_medio = self.cabeza
+            for _ in range(medio):
+                nodo_medio = nodo_medio.siguiente
+
+            if nodo_medio.edad == edad_objetivo:
+                return nodo_medio
+            elif nodo_medio.edad < edad_objetivo:
+                inicio = medio + 1
+            else:
+                fin = medio - 1
+
+        return None

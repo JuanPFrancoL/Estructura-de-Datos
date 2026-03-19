@@ -31,7 +31,7 @@ class ListaDoble:
         self._size = size
 
     def agregar_prisionero(self, prisionero):
-        nuevo_nodo = Nodo(prisionero)
+        nuevo_nodo = nodo(prisionero)
         if self._cabeza is None:
             self._cabeza = nuevo_nodo
             self._cola = nuevo_nodo
@@ -109,7 +109,7 @@ class ListaDoble:
         self.tamanio -= 1
 
     def insertar(self, index, valor):
-        nuevo_nodo = Nodo(valor)
+        nuevo_nodo = nodo(valor)
         if index == 0:
             nuevo_nodo.siguiente = self._cabeza
             self._cabeza = nuevo_nodo
